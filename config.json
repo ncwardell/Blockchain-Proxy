@@ -198,10 +198,12 @@
       "https://bitcoin-testnet.publicnode.com"
     ],
     "dogecoin": [
-      "https://rpc.ankr.com/doge"
+      "https://rpc.ankr.com/doge",
+      "https://go.getblock.io/3c7c28e711814d728754a606a1947ce3"
     ],
     "litecoin": [
-      "https://rpc.ankr.com/litecoin"
+      "https://rpc.ankr.com/litecoin",
+      "https://go.getblock.io/6d0733a55238499fa73639783f19ee42"
     ]
   },
 
