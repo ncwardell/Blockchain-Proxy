@@ -1,0 +1,249 @@
+{
+  "_version": "1.0.0",
+
+  "chain_types": {
+    "ethereum": "evm",
+    "polygon": "evm",
+    "arbitrum": "evm",
+    "optimism": "evm",
+    "base": "evm",
+    "bsc": "evm",
+    "avalanche": "evm",
+    "fantom": "evm",
+    "gnosis": "evm",
+    "moonbeam": "evm",
+    "zksync": "evm",
+    "linea": "evm",
+    "scroll": "evm",
+    "mantle": "evm",
+    "celo": "evm",
+    "sepolia": "evm",
+    "holesky": "evm",
+    "polygon-amoy": "evm",
+    "arbitrum-sepolia": "evm",
+    "optimism-sepolia": "evm",
+    "base-sepolia": "evm",
+    "bsc-testnet": "evm",
+    "avalanche-fuji": "evm",
+    "fantom-testnet": "evm",
+    "gnosis-chiado": "evm",
+    "moonbase-alpha": "evm",
+    "solana": "solana",
+    "solana-devnet": "solana",
+    "solana-testnet": "solana",
+    "bitcoin": "bitcoin",
+    "bitcoin-testnet": "bitcoin",
+    "dogecoin": "bitcoin",
+    "litecoin": "bitcoin"
+  },
+
+  "chain_metadata": {
+    "ethereum": { "chain_id": 1, "symbol": "ETH", "decimals": 18 },
+    "polygon": { "chain_id": 137, "symbol": "MATIC", "decimals": 18 },
+    "arbitrum": { "chain_id": 42161, "symbol": "ETH", "decimals": 18 },
+    "optimism": { "chain_id": 10, "symbol": "ETH", "decimals": 18 },
+    "base": { "chain_id": 8453, "symbol": "ETH", "decimals": 18 },
+    "bsc": { "chain_id": 56, "symbol": "BNB", "decimals": 18 },
+    "avalanche": { "chain_id": 43114, "symbol": "AVAX", "decimals": 18 },
+    "fantom": { "chain_id": 250, "symbol": "FTM", "decimals": 18 },
+    "gnosis": { "chain_id": 100, "symbol": "xDAI", "decimals": 18 },
+    "moonbeam": { "chain_id": 1284, "symbol": "GLMR", "decimals": 18 },
+    "zksync": { "chain_id": 324, "symbol": "ETH", "decimals": 18 },
+    "linea": { "chain_id": 59144, "symbol": "ETH", "decimals": 18 },
+    "scroll": { "chain_id": 534352, "symbol": "ETH", "decimals": 18 },
+    "mantle": { "chain_id": 5000, "symbol": "MNT", "decimals": 18 },
+    "celo": { "chain_id": 42220, "symbol": "CELO", "decimals": 18 },
+    "sepolia": { "chain_id": 11155111, "symbol": "ETH", "decimals": 18 },
+    "holesky": { "chain_id": 17000, "symbol": "ETH", "decimals": 18 },
+    "polygon-amoy": { "chain_id": 80002, "symbol": "MATIC", "decimals": 18 },
+    "arbitrum-sepolia": { "chain_id": 421614, "symbol": "ETH", "decimals": 18 },
+    "optimism-sepolia": { "chain_id": 11155420, "symbol": "ETH", "decimals": 18 },
+    "base-sepolia": { "chain_id": 84532, "symbol": "ETH", "decimals": 18 },
+    "bsc-testnet": { "chain_id": 97, "symbol": "BNB", "decimals": 18 },
+    "avalanche-fuji": { "chain_id": 43113, "symbol": "AVAX", "decimals": 18 },
+    "solana": { "symbol": "SOL", "decimals": 9 },
+    "solana-devnet": { "symbol": "SOL", "decimals": 9 },
+    "solana-testnet": { "symbol": "SOL", "decimals": 9 },
+    "bitcoin": { "symbol": "BTC", "decimals": 8 },
+    "bitcoin-testnet": { "symbol": "BTC", "decimals": 8 },
+    "dogecoin": { "symbol": "DOGE", "decimals": 8 },
+    "litecoin": { "symbol": "LTC", "decimals": 8 }
+  },
+
+  "rpc_endpoints": {
+    "ethereum": [
+      "https://ethereum.publicnode.com",
+      "https://eth.llamarpc.com",
+      "https://rpc.ankr.com/eth",
+      "https://eth.drpc.org"
+    ],
+    "polygon": [
+      "https://polygon.publicnode.com",
+      "https://polygon-rpc.com",
+      "https://rpc.ankr.com/polygon"
+    ],
+    "arbitrum": [
+      "https://arbitrum.publicnode.com",
+      "https://arb1.arbitrum.io/rpc",
+      "https://rpc.ankr.com/arbitrum"
+    ],
+    "optimism": [
+      "https://optimism.publicnode.com",
+      "https://mainnet.optimism.io",
+      "https://rpc.ankr.com/optimism"
+    ],
+    "base": [
+      "https://base.publicnode.com",
+      "https://mainnet.base.org",
+      "https://rpc.ankr.com/base"
+    ],
+    "bsc": [
+      "https://bsc.publicnode.com",
+      "https://bsc-dataseed.binance.org",
+      "https://rpc.ankr.com/bsc"
+    ],
+    "avalanche": [
+      "https://avalanche.publicnode.com",
+      "https://api.avax.network/ext/bc/C/rpc",
+      "https://rpc.ankr.com/avalanche"
+    ],
+    "fantom": [
+      "https://fantom.publicnode.com",
+      "https://rpc.ftm.tools",
+      "https://rpc.ankr.com/fantom"
+    ],
+    "gnosis": [
+      "https://gnosis.publicnode.com",
+      "https://rpc.gnosischain.com",
+      "https://rpc.ankr.com/gnosis"
+    ],
+    "moonbeam": [
+      "https://moonbeam.publicnode.com",
+      "https://rpc.api.moonbeam.network"
+    ],
+    "zksync": [
+      "https://mainnet.era.zksync.io",
+      "https://zksync.drpc.org"
+    ],
+    "linea": [
+      "https://rpc.linea.build",
+      "https://linea.drpc.org"
+    ],
+    "scroll": [
+      "https://rpc.scroll.io",
+      "https://scroll.drpc.org"
+    ],
+    "mantle": [
+      "https://rpc.mantle.xyz",
+      "https://mantle.drpc.org"
+    ],
+    "celo": [
+      "https://forno.celo.org",
+      "https://rpc.ankr.com/celo"
+    ],
+    "sepolia": [
+      "https://ethereum-sepolia.publicnode.com",
+      "https://rpc.sepolia.org",
+      "https://rpc.ankr.com/eth_sepolia"
+    ],
+    "holesky": [
+      "https://ethereum-holesky.publicnode.com",
+      "https://rpc.ankr.com/eth_holesky"
+    ],
+    "polygon-amoy": [
+      "https://rpc-amoy.polygon.technology"
+    ],
+    "arbitrum-sepolia": [
+      "https://arbitrum-sepolia.publicnode.com",
+      "https://sepolia-rollup.arbitrum.io/rpc"
+    ],
+    "optimism-sepolia": [
+      "https://optimism-sepolia.publicnode.com",
+      "https://sepolia.optimism.io"
+    ],
+    "base-sepolia": [
+      "https://base-sepolia.publicnode.com",
+      "https://sepolia.base.org"
+    ],
+    "bsc-testnet": [
+      "https://bsc-testnet.publicnode.com"
+    ],
+    "avalanche-fuji": [
+      "https://avalanche-fuji-c-chain.publicnode.com"
+    ],
+    "fantom-testnet": [
+      "https://rpc.testnet.fantom.network"
+    ],
+    "gnosis-chiado": [
+      "https://rpc.chiadochain.net"
+    ],
+    "moonbase-alpha": [
+      "https://rpc.api.moonbase.moonbeam.network"
+    ],
+    "solana": [
+      "https://api.mainnet-beta.solana.com",
+      "https://solana.publicnode.com"
+    ],
+    "solana-devnet": [
+      "https://api.devnet.solana.com"
+    ],
+    "solana-testnet": [
+      "https://api.testnet.solana.com"
+    ],
+    "bitcoin": [
+      "https://bitcoin.publicnode.com",
+      "https://rpc.ankr.com/btc"
+    ],
+    "bitcoin-testnet": [
+      "https://bitcoin-testnet.publicnode.com"
+    ],
+    "dogecoin": [
+      "https://rpc.ankr.com/doge"
+    ],
+    "litecoin": [
+      "https://rpc.ankr.com/litecoin"
+    ]
+  },
+
+  "balance_apis": {
+    "bitcoin": [
+      { "name": "blockstream", "url": "https://blockstream.info/api/address/{address}", "type": "blockstream" },
+      { "name": "mempool", "url": "https://mempool.space/api/address/{address}", "type": "blockstream" },
+      { "name": "blockcypher", "url": "https://api.blockcypher.com/v1/btc/main/addrs/{address}/balance", "type": "blockcypher" }
+    ],
+    "bitcoin-testnet": [
+      { "name": "blockstream", "url": "https://blockstream.info/testnet/api/address/{address}", "type": "blockstream" },
+      { "name": "mempool", "url": "https://mempool.space/testnet/api/address/{address}", "type": "blockstream" }
+    ],
+    "dogecoin": [
+      { "name": "blockcypher", "url": "https://api.blockcypher.com/v1/doge/main/addrs/{address}/balance", "type": "blockcypher" }
+    ],
+    "litecoin": [
+      { "name": "blockcypher", "url": "https://api.blockcypher.com/v1/ltc/main/addrs/{address}/balance", "type": "blockcypher" },
+      { "name": "litecoinspace", "url": "https://litecoinspace.org/api/address/{address}", "type": "blockstream" }
+    ]
+  },
+
+  "supported_methods": {
+    "evm": [
+      "eth_blockNumber", "eth_chainId", "eth_gasPrice",
+      "eth_getBalance", "eth_getTransactionCount", "eth_getCode", "eth_getStorageAt",
+      "eth_call", "eth_estimateGas", "eth_getBlockByNumber", "eth_getBlockByHash",
+      "eth_getTransactionByHash", "eth_getTransactionReceipt", "eth_getLogs",
+      "eth_sendRawTransaction", "net_version", "web3_clientVersion"
+    ],
+    "solana": [
+      "getAccountInfo", "getBalance", "getBlock", "getBlockHeight", "getBlockTime",
+      "getEpochInfo", "getGenesisHash", "getHealth", "getLatestBlockhash",
+      "getMinimumBalanceForRentExemption", "getMultipleAccounts", "getProgramAccounts",
+      "getSignaturesForAddress", "getSlot", "getSlotLeader",
+      "getTokenAccountBalance", "getTokenAccountsByOwner", "getTransaction",
+      "getTransactionCount", "getVersion", "isBlockhashValid", "sendTransaction"
+    ],
+    "bitcoin": [
+      "getbestblockhash", "getblock", "getblockchaininfo", "getblockcount",
+      "getblockhash", "getblockheader", "getdifficulty", "getmempoolinfo",
+      "getrawmempool", "getrawtransaction", "gettxout", "sendrawtransaction"
+    ]
+  }
+}
