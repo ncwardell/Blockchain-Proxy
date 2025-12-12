@@ -1,5 +1,6 @@
 {
-  "_version": "1.0.0",
+  "_version": "2.0.0",
+  "_note": "Enhanced config with additional chains, price APIs, and multi-chain support",
 
   "chain_types": {
     "ethereum": "evm",
@@ -34,7 +35,17 @@
     "bitcoin": "bitcoin",
     "bitcoin-testnet": "bitcoin",
     "dogecoin": "bitcoin",
-    "litecoin": "bitcoin"
+    "litecoin": "bitcoin",
+    "cosmos": "cosmos",
+    "osmosis": "cosmos",
+    "polkadot": "substrate",
+    "kusama": "substrate",
+    "cardano": "cardano",
+    "tezos": "tezos",
+    "algorand": "algorand",
+    "near": "near",
+    "starknet": "starknet",
+    "all": "multichain"
   },
 
   "chain_metadata": {
@@ -67,7 +78,16 @@
     "bitcoin": { "symbol": "BTC", "decimals": 8 },
     "bitcoin-testnet": { "symbol": "BTC", "decimals": 8 },
     "dogecoin": { "symbol": "DOGE", "decimals": 8 },
-    "litecoin": { "symbol": "LTC", "decimals": 8 }
+    "litecoin": { "symbol": "LTC", "decimals": 8 },
+    "cosmos": { "symbol": "ATOM", "decimals": 6 },
+    "osmosis": { "symbol": "OSMO", "decimals": 6 },
+    "polkadot": { "symbol": "DOT", "decimals": 10 },
+    "kusama": { "symbol": "KSM", "decimals": 12 },
+    "cardano": { "symbol": "ADA", "decimals": 6 },
+    "tezos": { "symbol": "XTZ", "decimals": 6 },
+    "algorand": { "symbol": "ALGO", "decimals": 6 },
+    "near": { "symbol": "NEAR", "decimals": 24 },
+    "starknet": { "symbol": "STRK", "decimals": 18 }
   },
 
   "rpc_endpoints": {
@@ -204,6 +224,40 @@
     "litecoin": [
       "https://rpc.ankr.com/litecoin",
       "https://go.getblock.io/6d0733a55238499fa73639783f19ee42"
+    ],
+    "cosmos": [
+      "https://cosmos-rpc.publicnode.com",
+      "https://rpc-cosmoshub.keplr.app"
+    ],
+    "osmosis": [
+      "https://osmosis-rpc.publicnode.com",
+      "https://rpc-osmosis.keplr.app"
+    ],
+    "polkadot": [
+      "https://polkadot-rpc.publicnode.com",
+      "https://rpc.polkadot.io"
+    ],
+    "kusama": [
+      "https://kusama-rpc.publicnode.com",
+      "https://kusama-rpc.polkadot.io"
+    ],
+    "cardano": [
+      "https://cardano-mainnet.blockfrost.io/api/v0"
+    ],
+    "tezos": [
+      "https://mainnet.api.tez.ie",
+      "https://rpc.tzbeta.net"
+    ],
+    "algorand": [
+      "https://mainnet-api.algonode.cloud",
+      "https://node.algoexplorerapi.io"
+    ],
+    "near": [
+      "https://rpc.mainnet.near.org"
+    ],
+    "starknet": [
+      "https://starknet-mainnet.public.blastapi.io",
+      "https://free-rpc.nethermind.io/mainnet-juno"
     ]
   },
 
@@ -223,7 +277,87 @@
     "litecoin": [
       { "name": "blockcypher", "url": "https://api.blockcypher.com/v1/ltc/main/addrs/{address}/balance", "type": "blockcypher" },
       { "name": "litecoinspace", "url": "https://litecoinspace.org/api/address/{address}", "type": "blockstream" }
+    ],
+    "all": [
+      { "name": "debank", "url": "https://api.debank.com/user/total_balance?id={address}", "type": "debank_total" },
+      { "name": "debank_chains", "url": "https://api.debank.com/user/chain_balance?id={address}", "type": "debank_chains" }
     ]
+  },
+
+  "price_apis": {
+    "coingecko": {
+      "name": "CoinGecko",
+      "base_url": "https://api.coingecko.com/api/v3",
+      "endpoints": {
+        "simple_price": "/simple/price?ids={ids}&vs_currencies={currencies}",
+        "coin_data": "/coins/{id}",
+        "token_price": "/simple/token_price/{platform}?contract_addresses={addresses}&vs_currencies={currencies}"
+      },
+      "rate_limit": "50 calls/minute",
+      "requires_key": false,
+      "platform_ids": {
+        "ethereum": "ethereum",
+        "polygon": "polygon-pos",
+        "arbitrum": "arbitrum-one",
+        "optimism": "optimistic-ethereum",
+        "base": "base",
+        "bsc": "binance-smart-chain",
+        "avalanche": "avalanche",
+        "fantom": "fantom",
+        "solana": "solana"
+      }
+    },
+    "coincap": {
+      "name": "CoinCap",
+      "base_url": "https://api.coincap.io/v2",
+      "endpoints": {
+        "assets": "/assets",
+        "asset": "/assets/{id}",
+        "rates": "/rates"
+      },
+      "rate_limit": "200 calls/minute",
+      "requires_key": false
+    },
+    "cryptocompare": {
+      "name": "CryptoCompare",
+      "base_url": "https://min-api.cryptocompare.com/data",
+      "endpoints": {
+        "price": "/price?fsym={from}&tsyms={to}",
+        "pricemulti": "/pricemulti?fsyms={from}&tsyms={to}",
+        "historical": "/pricehistorical?fsym={from}&tsyms={to}&ts={timestamp}"
+      },
+      "rate_limit": "100,000 calls/month (free)",
+      "requires_key": false
+    },
+    "debank": {
+      "name": "DeBank",
+      "base_url": "https://api.debank.com",
+      "endpoints": {
+        "token_list": "/token/cache_balance_list?user_addr={address}",
+        "user_total": "/user/total_balance?id={address}",
+        "chain_list": "/user/chain_balance?id={address}",
+        "portfolio": "/portfolio/project_list?user_addr={address}"
+      },
+      "rate_limit": "Limited (varies)",
+      "requires_key": false,
+      "note": "Some endpoints may require API key for heavy usage"
+    }
+  },
+
+  "debank_chain_mapping": {
+    "ethereum": "eth",
+    "polygon": "matic",
+    "arbitrum": "arb",
+    "optimism": "op",
+    "base": "base",
+    "bsc": "bsc",
+    "avalanche": "avax",
+    "fantom": "ftm",
+    "gnosis": "xdai",
+    "zksync": "era",
+    "linea": "linea",
+    "scroll": "scrl",
+    "solana": "sol"
   },
 
   "supported_methods": {
@@ -246,6 +380,67 @@
       "getbestblockhash", "getblock", "getblockchaininfo", "getblockcount",
       "getblockhash", "getblockheader", "getdifficulty", "getmempoolinfo",
       "getrawmempool", "getrawtransaction", "gettxout", "sendrawtransaction"
+    ],
+    "cosmos": [
+      "abci_info", "abci_query", "block", "block_results", "blockchain",
+      "broadcast_tx_async", "broadcast_tx_sync", "broadcast_tx_commit",
+      "commit", "consensus_state", "genesis", "health", "net_info",
+      "status", "tx", "tx_search", "validators"
+    ],
+    "substrate": [
+      "chain_getBlock", "chain_getBlockHash", "chain_getFinalizedHead",
+      "chain_getHeader", "state_call", "state_getMetadata", "state_getRuntimeVersion",
+      "state_getStorage", "system_chain", "system_health", "system_name",
+      "system_properties", "system_version"
+    ],
+    "cardano": [
+      "blocks/latest", "blocks/{hash_or_number}", "txs/{hash}",
+      "addresses/{address}", "addresses/{address}/transactions",
+      "accounts/{stake_address}", "pools", "epochs/latest"
+    ],
+    "tezos": [
+      "chains/main/blocks/head", "chains/main/blocks/{block_id}",
+      "chains/main/blocks/head/context/contracts/{address}/balance",
+      "chains/main/blocks/head/helpers/scripts/run_operation",
+      "injection/operation"
+    ],
+    "algorand": [
+      "v2/status", "v2/status/wait-for-block-after/{round}",
+      "v2/accounts/{address}", "v2/transactions/pending",
+      "v2/transactions", "v2/blocks/{round}", "v2/assets/{asset-id}"
+    ],
+    "near": [
+      "query", "block", "chunk", "tx", "validators",
+      "broadcast_tx_async", "broadcast_tx_commit", "gas_price",
+      "protocol_config", "EXPERIMENTAL_genesis_config"
+    ],
+    "starknet": [
+      "starknet_blockNumber", "starknet_blockHashAndNumber", "starknet_getBlockWithTxHashes",
+      "starknet_getBlockWithTxs", "starknet_getTransactionByHash", "starknet_getTransactionReceipt",
+      "starknet_getClassAt", "starknet_getStorageAt", "starknet_call",
+      "starknet_estimateFee", "starknet_addInvokeTransaction"
+    ],
+    "multichain": [
+      "get_total_balance", "get_chain_balances", "get_token_list", "get_portfolio"
     ]
+  },
+
+  "explorer_urls": {
+    "ethereum": "https://etherscan.io",
+    "polygon": "https://polygonscan.com",
+    "arbitrum": "https://arbiscan.io",
+    "optimism": "https://optimistic.etherscan.io",
+    "base": "https://basescan.org",
+    "bsc": "https://bscscan.com",
+    "avalanche": "https://snowtrace.io",
+    "fantom": "https://ftmscan.com",
+    "gnosis": "https://gnosisscan.io",
+    "solana": "https://solscan.io",
+    "bitcoin": "https://blockstream.info",
+    "cosmos": "https://www.mintscan.io/cosmos",
+    "polkadot": "https://polkadot.subscan.io",
+    "cardano": "https://cardanoscan.io",
+    "near": "https://nearblocks.io",
+    "starknet": "https://starkscan.co"
   }
 }
