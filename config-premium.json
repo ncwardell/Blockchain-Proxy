@@ -2,13 +2,11 @@
   "_version": "2.0.0-premium",
   "_description": "Premium blockchain configuration - Set API keys here or via environment variables",
   "_note": "This is stateless - API keys must be in config or environment. No runtime state is saved.",
-
   "server_info": {
     "name": "blockchain-rpc-premium-proxy",
     "version": "4.1.0",
     "description": "Multi-chain blockchain RPC proxy with premium endpoint routing, supporting 40+ networks including Ethereum, Polygon, Arbitrum, Solana, Bitcoin, and more. Features intelligent tier-based endpoint selection with automatic fallback, comprehensive method documentation, and support for premium providers (NOWNodes, Alchemy, Infura, QuickNode)."
   },
-
   "api_keys": {
     "_comment": "Set your API keys here. These will be read on each function call.",
     "nownodes": "",
@@ -25,7 +23,6 @@
     "coincap": "",
     "cryptocompare": ""
   },
-
   "env_key_mapping": {
     "_comment": "Environment variable names to check for API keys",
     "nownodes": "NOWNODES_API_KEY",
@@ -42,12 +39,14 @@
     "coincap": "COINCAP_API_KEY",
     "cryptocompare": "CRYPTOCOMPARE_API_KEY"
   },
-
   "endpoint_tiers": {
     "_comment": "Tier 1 = Premium paid, Tier 2 = Free with API key, Tier 3 = Free public",
-    "priority": [1, 2, 3]
+    "priority": [
+      1,
+      2,
+      3
+    ]
   },
-
   "chain_types": {
     "ethereum": "evm",
     "polygon": "evm",
@@ -83,40 +82,172 @@
     "dogecoin": "bitcoin",
     "litecoin": "bitcoin"
   },
-
   "chain_metadata": {
-    "ethereum": { "chain_id": 1, "symbol": "ETH", "decimals": 18, "nownodes_id": "eth" },
-    "polygon": { "chain_id": 137, "symbol": "MATIC", "decimals": 18, "nownodes_id": "matic" },
-    "arbitrum": { "chain_id": 42161, "symbol": "ETH", "decimals": 18, "nownodes_id": "arbitrum" },
-    "optimism": { "chain_id": 10, "symbol": "ETH", "decimals": 18, "nownodes_id": "optimism" },
-    "base": { "chain_id": 8453, "symbol": "ETH", "decimals": 18, "nownodes_id": "base" },
-    "bsc": { "chain_id": 56, "symbol": "BNB", "decimals": 18, "nownodes_id": "bsc" },
-    "avalanche": { "chain_id": 43114, "symbol": "AVAX", "decimals": 18, "nownodes_id": "avax" },
-    "fantom": { "chain_id": 250, "symbol": "FTM", "decimals": 18, "nownodes_id": "ftm" },
-    "gnosis": { "chain_id": 100, "symbol": "xDAI", "decimals": 18, "nownodes_id": "gnosis" },
-    "moonbeam": { "chain_id": 1284, "symbol": "GLMR", "decimals": 18, "nownodes_id": "moonbeam" },
-    "zksync": { "chain_id": 324, "symbol": "ETH", "decimals": 18, "nownodes_id": "zksync" },
-    "linea": { "chain_id": 59144, "symbol": "ETH", "decimals": 18 },
-    "scroll": { "chain_id": 534352, "symbol": "ETH", "decimals": 18 },
-    "mantle": { "chain_id": 5000, "symbol": "MNT", "decimals": 18, "nownodes_id": "mantle" },
-    "celo": { "chain_id": 42220, "symbol": "CELO", "decimals": 18, "nownodes_id": "celo" },
-    "sepolia": { "chain_id": 11155111, "symbol": "ETH", "decimals": 18, "nownodes_id": "sepolia" },
-    "holesky": { "chain_id": 17000, "symbol": "ETH", "decimals": 18, "nownodes_id": "holesky" },
-    "polygon-amoy": { "chain_id": 80002, "symbol": "MATIC", "decimals": 18 },
-    "arbitrum-sepolia": { "chain_id": 421614, "symbol": "ETH", "decimals": 18 },
-    "optimism-sepolia": { "chain_id": 11155420, "symbol": "ETH", "decimals": 18 },
-    "base-sepolia": { "chain_id": 84532, "symbol": "ETH", "decimals": 18 },
-    "bsc-testnet": { "chain_id": 97, "symbol": "BNB", "decimals": 18, "nownodes_id": "bsc_testnet" },
-    "avalanche-fuji": { "chain_id": 43113, "symbol": "AVAX", "decimals": 18, "nownodes_id": "avax_testnet" },
-    "solana": { "symbol": "SOL", "decimals": 9, "nownodes_id": "sol" },
-    "solana-devnet": { "symbol": "SOL", "decimals": 9 },
-    "solana-testnet": { "symbol": "SOL", "decimals": 9 },
-    "bitcoin": { "symbol": "BTC", "decimals": 8, "nownodes_id": "btc" },
-    "bitcoin-testnet": { "symbol": "BTC", "decimals": 8 },
-    "dogecoin": { "symbol": "DOGE", "decimals": 8, "nownodes_id": "doge" },
-    "litecoin": { "symbol": "LTC", "decimals": 8, "nownodes_id": "ltc" }
+    "ethereum": {
+      "chain_id": 1,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "eth"
+    },
+    "polygon": {
+      "chain_id": 137,
+      "symbol": "MATIC",
+      "decimals": 18,
+      "nownodes_id": "matic"
+    },
+    "arbitrum": {
+      "chain_id": 42161,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "arbitrum"
+    },
+    "optimism": {
+      "chain_id": 10,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "optimism"
+    },
+    "base": {
+      "chain_id": 8453,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "base"
+    },
+    "bsc": {
+      "chain_id": 56,
+      "symbol": "BNB",
+      "decimals": 18,
+      "nownodes_id": "bsc"
+    },
+    "avalanche": {
+      "chain_id": 43114,
+      "symbol": "AVAX",
+      "decimals": 18,
+      "nownodes_id": "avax"
+    },
+    "fantom": {
+      "chain_id": 250,
+      "symbol": "FTM",
+      "decimals": 18,
+      "nownodes_id": "ftm"
+    },
+    "gnosis": {
+      "chain_id": 100,
+      "symbol": "xDAI",
+      "decimals": 18,
+      "nownodes_id": "gnosis"
+    },
+    "moonbeam": {
+      "chain_id": 1284,
+      "symbol": "GLMR",
+      "decimals": 18,
+      "nownodes_id": "moonbeam"
+    },
+    "zksync": {
+      "chain_id": 324,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "zksync"
+    },
+    "linea": {
+      "chain_id": 59144,
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "scroll": {
+      "chain_id": 534352,
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "mantle": {
+      "chain_id": 5000,
+      "symbol": "MNT",
+      "decimals": 18,
+      "nownodes_id": "mantle"
+    },
+    "celo": {
+      "chain_id": 42220,
+      "symbol": "CELO",
+      "decimals": 18,
+      "nownodes_id": "celo"
+    },
+    "sepolia": {
+      "chain_id": 11155111,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "sepolia"
+    },
+    "holesky": {
+      "chain_id": 17000,
+      "symbol": "ETH",
+      "decimals": 18,
+      "nownodes_id": "holesky"
+    },
+    "polygon-amoy": {
+      "chain_id": 80002,
+      "symbol": "MATIC",
+      "decimals": 18
+    },
+    "arbitrum-sepolia": {
+      "chain_id": 421614,
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "optimism-sepolia": {
+      "chain_id": 11155420,
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "base-sepolia": {
+      "chain_id": 84532,
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "bsc-testnet": {
+      "chain_id": 97,
+      "symbol": "BNB",
+      "decimals": 18,
+      "nownodes_id": "bsc_testnet"
+    },
+    "avalanche-fuji": {
+      "chain_id": 43113,
+      "symbol": "AVAX",
+      "decimals": 18,
+      "nownodes_id": "avax_testnet"
+    },
+    "solana": {
+      "symbol": "SOL",
+      "decimals": 9,
+      "nownodes_id": "sol"
+    },
+    "solana-devnet": {
+      "symbol": "SOL",
+      "decimals": 9
+    },
+    "solana-testnet": {
+      "symbol": "SOL",
+      "decimals": 9
+    },
+    "bitcoin": {
+      "symbol": "BTC",
+      "decimals": 8,
+      "nownodes_id": "btc"
+    },
+    "bitcoin-testnet": {
+      "symbol": "BTC",
+      "decimals": 8
+    },
+    "dogecoin": {
+      "symbol": "DOGE",
+      "decimals": 8,
+      "nownodes_id": "doge"
+    },
+    "litecoin": {
+      "symbol": "LTC",
+      "decimals": 8,
+      "nownodes_id": "ltc"
+    }
   },
-
   "rpc_endpoints": {
     "ethereum": [
       {
@@ -124,14 +255,21 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
         "tier": 1,
         "provider": "alchemy",
         "requires_key": "alchemy",
-        "features": ["enhanced_api", "nft_api"]
+        "features": [
+          "enhanced_api",
+          "nft_api"
+        ]
       },
       {
         "url": "https://mainnet.infura.io/v3/{INFURA_API_KEY}",
@@ -172,7 +310,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://polygon-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
@@ -208,7 +350,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://arb-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
@@ -238,7 +384,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://opt-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
@@ -268,7 +418,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://base-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
@@ -298,7 +452,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://bsc.publicnode.com",
@@ -322,7 +480,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://avalanche.publicnode.com",
@@ -346,7 +508,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://fantom.publicnode.com",
@@ -370,7 +536,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://gnosis.publicnode.com",
@@ -394,7 +564,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://moonbeam.publicnode.com",
@@ -413,7 +587,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://mainnet.era.zksync.io",
@@ -456,7 +632,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://rpc.mantle.xyz",
@@ -475,7 +653,11 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["archive", "trace", "balance_api"]
+        "features": [
+          "archive",
+          "trace",
+          "balance_api"
+        ]
       },
       {
         "url": "https://forno.celo.org",
@@ -494,7 +676,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://ethereum-sepolia.publicnode.com",
@@ -518,7 +702,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://ethereum-holesky.publicnode.com",
@@ -580,7 +766,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://bsc-testnet.publicnode.com",
@@ -594,7 +782,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://avalanche-fuji-c-chain.publicnode.com",
@@ -629,7 +819,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://api.mainnet-beta.solana.com",
@@ -662,7 +854,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://bitcoin.publicnode.com",
@@ -688,7 +882,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://rpc.ankr.com/doge",
@@ -707,7 +903,9 @@
         "tier": 1,
         "provider": "nownodes",
         "requires_key": "nownodes",
-        "features": ["balance_api"]
+        "features": [
+          "balance_api"
+        ]
       },
       {
         "url": "https://rpc.ankr.com/litecoin",
@@ -721,40 +919,53 @@
       }
     ]
   },
-
   "balance_api_parsers": {
     "_comment": "Define how to parse balance from different API response formats",
     "nownodes": {
-      "path": ["balance", "result"],
+      "path": [
+        "balance",
+        "result"
+      ],
       "description": "Tries data.balance, then data.result"
     },
     "blockstream": {
-      "path": ["chain_stats.funded_txo_sum"],
+      "path": [
+        "chain_stats.funded_txo_sum"
+      ],
       "description": "Extracts data.chain_stats.funded_txo_sum"
     },
     "blockcypher": {
-      "path": ["balance"],
+      "path": [
+        "balance"
+      ],
       "description": "Extracts data.balance"
     },
     "debank": {
-      "path": ["total_usd_value", "usd_value"],
+      "path": [
+        "total_usd_value",
+        "usd_value"
+      ],
       "description": "DeBank portfolio value in USD"
     },
     "default": {
-      "path": ["balance", "result", "value"],
+      "path": [
+        "balance",
+        "result",
+        "value"
+      ],
       "description": "Generic fallback - tries common field names"
     }
   },
-
   "balance_apis": {
-    "_comment": "NOWNodes provides built-in balance APIs for all supported chains",
+    "_comment": "NOWNodes provides built-in balance APIs for all supported chains via 'book' endpoints (API key in header)",
     "bitcoin": [
       {
         "name": "nownodes",
-        "url": "https://btc.nownodes.io/{NOWNODES_API_KEY}/balance/{address}",
+        "url": "https://btcbook.nownodes.io/api/v2/address/{address}",
         "type": "nownodes",
         "tier": 1,
-        "requires_key": "nownodes"
+        "requires_key": "nownodes",
+        "header_key": "api-key"
       },
       {
         "name": "blockstream",
@@ -792,10 +1003,11 @@
     "dogecoin": [
       {
         "name": "nownodes",
-        "url": "https://doge.nownodes.io/{NOWNODES_API_KEY}/balance/{address}",
+        "url": "https://dogebook.nownodes.io/api/v2/address/{address}",
         "type": "nownodes",
         "tier": 1,
-        "requires_key": "nownodes"
+        "requires_key": "nownodes",
+        "header_key": "api-key"
       },
       {
         "name": "blockcypher",
@@ -807,10 +1019,11 @@
     "litecoin": [
       {
         "name": "nownodes",
-        "url": "https://ltc.nownodes.io/{NOWNODES_API_KEY}/balance/{address}",
+        "url": "https://ltcbook.nownodes.io/api/v2/address/{address}",
         "type": "nownodes",
         "tier": 1,
-        "requires_key": "nownodes"
+        "requires_key": "nownodes",
+        "header_key": "api-key"
       },
       {
         "name": "blockcypher",
@@ -826,7 +1039,6 @@
       }
     ]
   },
-
   "price_apis": {
     "_comment": "Price API providers with tier-based priority and automatic fallback",
     "providers": [
@@ -846,8 +1058,18 @@
           "free": "10-50 calls/minute",
           "paid": "500 calls/minute"
         },
-        "features": ["symbol_lookup", "token_address", "multi_currency", "historical"],
-        "currencies": ["usd", "eur", "btc", "eth"],
+        "features": [
+          "symbol_lookup",
+          "token_address",
+          "multi_currency",
+          "historical"
+        ],
+        "currencies": [
+          "usd",
+          "eur",
+          "btc",
+          "eth"
+        ],
         "platform_mapping": {
           "ethereum": "ethereum",
           "polygon": "polygon-pos",
@@ -873,8 +1095,13 @@
           "free": "200 requests/minute",
           "paid": "Unlimited"
         },
-        "features": ["symbol_lookup", "fast_updates"],
-        "currencies": ["usd"]
+        "features": [
+          "symbol_lookup",
+          "fast_updates"
+        ],
+        "currencies": [
+          "usd"
+        ]
       },
       {
         "name": "cryptocompare",
@@ -891,15 +1118,27 @@
           "free": "100,000 calls/month",
           "paid": "Higher limits"
         },
-        "features": ["symbol_lookup", "historical", "multiple_exchanges"],
-        "currencies": ["USD", "EUR", "BTC", "ETH"]
+        "features": [
+          "symbol_lookup",
+          "historical",
+          "multiple_exchanges"
+        ],
+        "currencies": [
+          "USD",
+          "EUR",
+          "BTC",
+          "ETH"
+        ]
       }
     ],
-    "fallback_order": ["coingecko", "coincap", "cryptocompare"],
+    "fallback_order": [
+      "coingecko",
+      "coincap",
+      "cryptocompare"
+    ],
     "default_provider": "coingecko",
     "default_currency": "usd"
   },
-
   "debank_api": {
     "_comment": "DeBank API configuration for multi-chain portfolio queries (paid Pro API required for reliable access)",
     "base_url": "https://pro-openapi.debank.com/v1",
@@ -917,7 +1156,6 @@
       "paid": "Pro API with higher limits and reliability"
     }
   },
-
   "debank_chain_mapping": {
     "_comment": "Maps our chain names to DeBank's chain identifiers",
     "ethereum": "eth",
@@ -935,264 +1173,455 @@
     "aurora": "aurora",
     "harmony": "hmy"
   },
-
   "supported_methods": {
     "evm": [
-      "eth_blockNumber", "eth_chainId", "eth_gasPrice",
-      "eth_getBalance", "eth_getTransactionCount", "eth_getCode", "eth_getStorageAt",
-      "eth_call", "eth_estimateGas", "eth_getBlockByNumber", "eth_getBlockByHash",
-      "eth_getTransactionByHash", "eth_getTransactionReceipt", "eth_getLogs",
-      "eth_sendRawTransaction", "net_version", "web3_clientVersion"
+      "eth_blockNumber",
+      "eth_chainId",
+      "eth_gasPrice",
+      "eth_getBalance",
+      "eth_getTransactionCount",
+      "eth_getCode",
+      "eth_getStorageAt",
+      "eth_call",
+      "eth_estimateGas",
+      "eth_getBlockByNumber",
+      "eth_getBlockByHash",
+      "eth_getTransactionByHash",
+      "eth_getTransactionReceipt",
+      "eth_getLogs",
+      "eth_sendRawTransaction",
+      "net_version",
+      "web3_clientVersion"
     ],
     "solana": [
-      "getAccountInfo", "getBalance", "getBlock", "getBlockHeight", "getBlockTime",
-      "getEpochInfo", "getGenesisHash", "getHealth", "getLatestBlockhash",
-      "getMinimumBalanceForRentExemption", "getMultipleAccounts", "getProgramAccounts",
-      "getSignaturesForAddress", "getSlot", "getSlotLeader",
-      "getTokenAccountBalance", "getTokenAccountsByOwner", "getTransaction",
-      "getTransactionCount", "getVersion", "isBlockhashValid", "sendTransaction"
+      "getAccountInfo",
+      "getBalance",
+      "getBlock",
+      "getBlockHeight",
+      "getBlockTime",
+      "getEpochInfo",
+      "getGenesisHash",
+      "getHealth",
+      "getLatestBlockhash",
+      "getMinimumBalanceForRentExemption",
+      "getMultipleAccounts",
+      "getProgramAccounts",
+      "getSignaturesForAddress",
+      "getSlot",
+      "getSlotLeader",
+      "getTokenAccountBalance",
+      "getTokenAccountsByOwner",
+      "getTransaction",
+      "getTransactionCount",
+      "getVersion",
+      "isBlockhashValid",
+      "sendTransaction"
     ],
     "bitcoin": [
-      "getbestblockhash", "getblock", "getblockchaininfo", "getblockcount",
-      "getblockhash", "getblockheader", "getdifficulty", "getmempoolinfo",
-      "getrawmempool", "getrawtransaction", "gettxout", "sendrawtransaction"
+      "getbestblockhash",
+      "getblock",
+      "getblockchaininfo",
+      "getblockcount",
+      "getblockhash",
+      "getblockheader",
+      "getdifficulty",
+      "getmempoolinfo",
+      "getrawmempool",
+      "getrawtransaction",
+      "gettxout",
+      "sendrawtransaction"
     ]
   },
-
   "method_documentation": {
     "eth_blockNumber": {
       "params": [],
       "description": "Get the current block number (latest block height on the chain)",
       "returns": "hex string (e.g., '0x1234567')",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_chainId": {
       "params": [],
       "description": "Get the chain ID for transaction signing and network identification",
       "returns": "hex string (e.g., '0x1' for Ethereum mainnet)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_gasPrice": {
       "params": [],
       "description": "Get the current gas price in Wei for transaction cost estimation",
       "returns": "hex string (wei amount, e.g., '0x4a817c800' = 20 Gwei)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getBalance": {
-      "params": ["address (0x...)", "block ('latest', 'earliest', 'pending', or hex block number)"],
+      "params": [
+        "address (0x...)",
+        "block ('latest', 'earliest', 'pending', or hex block number)"
+      ],
       "description": "Get the native token balance (ETH, MATIC, AVAX, etc.) for an address",
       "returns": "hex string (balance in wei)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getTransactionCount": {
-      "params": ["address", "block"],
+      "params": [
+        "address",
+        "block"
+      ],
       "description": "Get the nonce (transaction count) for an address - required for sending transactions",
       "returns": "hex string (nonce value)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getCode": {
-      "params": ["address", "block"],
+      "params": [
+        "address",
+        "block"
+      ],
       "description": "Get the bytecode at an address (used to verify if address is a contract)",
       "returns": "hex string (contract bytecode, or '0x' if not a contract)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getStorageAt": {
-      "params": ["address", "position (hex)", "block"],
+      "params": [
+        "address",
+        "position (hex)",
+        "block"
+      ],
       "description": "Get the value from a storage position at a given address",
       "returns": "hex string (storage value)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_call": {
-      "params": ["{to, data, from?, gas?, gasPrice?, value?}", "block"],
+      "params": [
+        "{to, data, from?, gas?, gasPrice?, value?}",
+        "block"
+      ],
       "description": "Execute a read-only contract call without creating a transaction (for querying contract state)",
       "returns": "hex string (ABI-encoded return data)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_estimateGas": {
-      "params": ["{to, data, from?, gas?, gasPrice?, value?}"],
+      "params": [
+        "{to, data, from?, gas?, gasPrice?, value?}"
+      ],
       "description": "Estimate gas required for a transaction (important for avoiding out-of-gas errors)",
       "returns": "hex string (estimated gas units)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getBlockByNumber": {
-      "params": ["block (hex or 'latest')", "fullTx (boolean: true for full tx objects, false for hashes only)"],
+      "params": [
+        "block (hex or 'latest')",
+        "fullTx (boolean: true for full tx objects, false for hashes only)"
+      ],
       "description": "Get full block data including transactions, timestamp, and miner info",
       "returns": "block object with transactions array",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getBlockByHash": {
-      "params": ["blockHash (0x...)", "fullTx (boolean)"],
+      "params": [
+        "blockHash (0x...)",
+        "fullTx (boolean)"
+      ],
       "description": "Get block data by its hash rather than number",
       "returns": "block object",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getTransactionByHash": {
-      "params": ["txHash (0x...)"],
+      "params": [
+        "txHash (0x...)"
+      ],
       "description": "Get transaction details by hash (status, from, to, value, gas, etc.)",
       "returns": "transaction object or null if not found",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getTransactionReceipt": {
-      "params": ["txHash"],
+      "params": [
+        "txHash"
+      ],
       "description": "Get transaction receipt with execution status, logs, and gas used (only available after tx is mined)",
       "returns": "receipt object with status (0x1=success, 0x0=failed), logs, gasUsed, etc.",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_getLogs": {
-      "params": ["{fromBlock?, toBlock?, address?, topics?}"],
+      "params": [
+        "{fromBlock?, toBlock?, address?, topics?}"
+      ],
       "description": "Query event logs emitted by contracts (essential for monitoring contract activity)",
       "returns": "array of log objects",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "eth_sendRawTransaction": {
-      "params": ["signedTx (hex string of signed transaction)"],
+      "params": [
+        "signedTx (hex string of signed transaction)"
+      ],
       "description": "Broadcast a signed transaction to the network",
       "returns": "transaction hash (0x...)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "net_version": {
       "params": [],
       "description": "Get the network ID",
       "returns": "string (network ID)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "web3_clientVersion": {
       "params": [],
       "description": "Get the client version string",
       "returns": "string (client version)",
-      "chain_types": ["evm"]
+      "chain_types": [
+        "evm"
+      ]
     },
     "getBalance": {
-      "params": ["publicKey (base58 string)", "optional: {commitment, minContextSlot}"],
+      "params": [
+        "publicKey (base58 string)",
+        "optional: {commitment, minContextSlot}"
+      ],
       "description": "Get SOL balance for a Solana account in lamports (1 SOL = 1,000,000,000 lamports)",
       "returns": "object: {context: {slot}, value: lamports}",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getBlockHeight": {
-      "params": ["optional: {commitment, minContextSlot}"],
+      "params": [
+        "optional: {commitment, minContextSlot}"
+      ],
       "description": "Get current block height on Solana",
       "returns": "number (block height)",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getTransaction": {
-      "params": ["signature (base58)", "optional: {encoding, commitment, maxSupportedTransactionVersion}"],
+      "params": [
+        "signature (base58)",
+        "optional: {encoding, commitment, maxSupportedTransactionVersion}"
+      ],
       "description": "Get transaction details by signature",
       "returns": "transaction object with meta, blockTime, and slot info",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getLatestBlockhash": {
-      "params": ["optional: {commitment, minContextSlot}"],
+      "params": [
+        "optional: {commitment, minContextSlot}"
+      ],
       "description": "Get latest blockhash and last valid block height (required for transaction creation)",
       "returns": "object: {blockhash, lastValidBlockHeight}",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getTokenAccountsByOwner": {
-      "params": ["owner (pubkey)", "{mint: tokenMintAddress} or {programId: tokenProgramId}", "optional: {encoding, dataSlice, minContextSlot}"],
+      "params": [
+        "owner (pubkey)",
+        "{mint: tokenMintAddress} or {programId: tokenProgramId}",
+        "optional: {encoding, dataSlice, minContextSlot}"
+      ],
       "description": "Get all token accounts owned by an address for a specific SPL token",
       "returns": "array of token account objects with balances",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "sendTransaction": {
-      "params": ["signedTransaction (base64)", "optional: {skipPreflight, preflightCommitment, encoding, maxRetries, minContextSlot}"],
+      "params": [
+        "signedTransaction (base64)",
+        "optional: {skipPreflight, preflightCommitment, encoding, maxRetries, minContextSlot}"
+      ],
       "description": "Broadcast a signed transaction to Solana",
       "returns": "transaction signature",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getAccountInfo": {
-      "params": ["publicKey", "optional: {commitment, encoding, dataSlice}"],
+      "params": [
+        "publicKey",
+        "optional: {commitment, encoding, dataSlice}"
+      ],
       "description": "Get account data and metadata for any Solana account",
       "returns": "account object with lamports, owner, data, executable status",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getBlock": {
-      "params": ["slot", "optional: {encoding, transactionDetails, rewards, commitment, maxSupportedTransactionVersion}"],
+      "params": [
+        "slot",
+        "optional: {encoding, transactionDetails, rewards, commitment, maxSupportedTransactionVersion}"
+      ],
       "description": "Get block data for a specific slot",
       "returns": "block object with transactions and metadata",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getBlockTime": {
-      "params": ["slot"],
+      "params": [
+        "slot"
+      ],
       "description": "Get estimated production time of a block",
       "returns": "unix timestamp or null",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getEpochInfo": {
-      "params": ["optional: {commitment, minContextSlot}"],
+      "params": [
+        "optional: {commitment, minContextSlot}"
+      ],
       "description": "Get information about the current epoch",
       "returns": "object with epoch, slotIndex, slotsInEpoch, etc.",
-      "chain_types": ["solana"]
+      "chain_types": [
+        "solana"
+      ]
     },
     "getblockcount": {
       "params": [],
       "description": "Get the current block height on Bitcoin blockchain",
       "returns": "number (block height)",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getbestblockhash": {
       "params": [],
       "description": "Get hash of the tip (latest) block",
       "returns": "hex string (block hash)",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getrawtransaction": {
-      "params": ["txid (hex string)", "verbose (boolean: true for decoded JSON, false for raw hex)"],
+      "params": [
+        "txid (hex string)",
+        "verbose (boolean: true for decoded JSON, false for raw hex)"
+      ],
       "description": "Get raw transaction data by transaction ID",
       "returns": "hex string (if verbose=false) or transaction object (if verbose=true)",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "sendrawtransaction": {
-      "params": ["hexstring (signed transaction)"],
+      "params": [
+        "hexstring (signed transaction)"
+      ],
       "description": "Broadcast a signed Bitcoin transaction to the network",
       "returns": "transaction ID (txid)",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getblock": {
-      "params": ["blockhash", "verbosity (0=hex, 1=json, 2=json with tx details)"],
+      "params": [
+        "blockhash",
+        "verbosity (0=hex, 1=json, 2=json with tx details)"
+      ],
       "description": "Get block data by block hash",
       "returns": "block data in requested format",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getblockchaininfo": {
       "params": [],
       "description": "Get blockchain state info including chain name, blocks, headers, difficulty",
       "returns": "object with comprehensive blockchain state",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getblockhash": {
-      "params": ["height (number)"],
+      "params": [
+        "height (number)"
+      ],
       "description": "Get block hash for a specific height",
       "returns": "hex string (block hash)",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getblockheader": {
-      "params": ["blockhash", "verbose (boolean)"],
+      "params": [
+        "blockhash",
+        "verbose (boolean)"
+      ],
       "description": "Get block header information",
       "returns": "header object or hex string",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getdifficulty": {
       "params": [],
       "description": "Get the current mining difficulty",
       "returns": "number (difficulty)",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getmempoolinfo": {
       "params": [],
       "description": "Get mempool state information",
       "returns": "object with size, bytes, usage, etc.",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "getrawmempool": {
-      "params": ["verbose (boolean, optional)"],
+      "params": [
+        "verbose (boolean, optional)"
+      ],
       "description": "Get all transaction IDs in mempool",
       "returns": "array of txids or object with details",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     },
     "gettxout": {
-      "params": ["txid", "n (output index)", "include_mempool (boolean, optional)"],
+      "params": [
+        "txid",
+        "n (output index)",
+        "include_mempool (boolean, optional)"
+      ],
       "description": "Get details about an unspent transaction output",
       "returns": "object with value, scriptPubKey, etc. or null if spent",
-      "chain_types": ["bitcoin"]
+      "chain_types": [
+        "bitcoin"
+      ]
     }
   }
 }
