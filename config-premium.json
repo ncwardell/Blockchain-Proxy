@@ -1,5 +1,5 @@
 {
-  "_version": "2.0.0-premium",
+  "_version": "3.0.0-premium",
   "_description": "Premium blockchain configuration - Set API keys here or via environment variables",
   "_note": "This is stateless - API keys must be in config or environment. No runtime state is saved.",
   "server_info": {
@@ -40,12 +40,17 @@
     "cryptocompare": "CRYPTOCOMPARE_API_KEY"
   },
   "endpoint_tiers": {
-    "_comment": "Tier 1 = Premium paid, Tier 2 = Free with API key, Tier 3 = Free public",
+    "_comment": "Premium = Paid services, Freemium = Free with API key, Free = Public endpoints",
     "priority": [
-      1,
-      2,
-      3
-    ]
+      "premium",
+      "freemium",
+      "free"
+    ],
+    "descriptions": {
+      "premium": "Paid premium services with highest reliability and rate limits",
+      "freemium": "Free services requiring API key registration",
+      "free": "Public endpoints with no authentication required"
+    }
   },
   "chain_types": {
     "ethereum": "evm",
@@ -87,43 +92,71 @@
       "chain_id": 1,
       "symbol": "ETH",
       "decimals": 18,
-      "nownodes_id": "eth"
+      "nownodes_id": "eth",
+      "explorer": "https://etherscan.io",
+      "explorer_api": "https://api.etherscan.io/api",
+      "average_block_time": 12,
+      "finality_blocks": 64
     },
     "polygon": {
       "chain_id": 137,
       "symbol": "MATIC",
       "decimals": 18,
-      "nownodes_id": "matic"
+      "nownodes_id": "matic",
+      "explorer": "https://polygonscan.com",
+      "explorer_api": "https://api.polygonscan.com/api",
+      "average_block_time": 2,
+      "finality_blocks": 256
     },
     "arbitrum": {
       "chain_id": 42161,
       "symbol": "ETH",
       "decimals": 18,
-      "nownodes_id": "arbitrum"
+      "nownodes_id": "arbitrum",
+      "explorer": "https://arbiscan.io",
+      "explorer_api": "https://api.arbiscan.io/api",
+      "average_block_time": 0.25,
+      "finality_blocks": 1
     },
     "optimism": {
       "chain_id": 10,
       "symbol": "ETH",
       "decimals": 18,
-      "nownodes_id": "optimism"
+      "nownodes_id": "optimism",
+      "explorer": "https://optimistic.etherscan.io",
+      "explorer_api": "https://api-optimistic.etherscan.io/api",
+      "average_block_time": 2,
+      "finality_blocks": 1
     },
     "base": {
       "chain_id": 8453,
       "symbol": "ETH",
       "decimals": 18,
-      "nownodes_id": "base"
+      "nownodes_id": "base",
+      "explorer": "https://basescan.org",
+      "explorer_api": "https://api.basescan.org/api",
+      "average_block_time": 2,
+      "finality_blocks": 1
     },
     "bsc": {
       "chain_id": 56,
       "symbol": "BNB",
       "decimals": 18,
-      "nownodes_id": "bsc"
+      "nownodes_id": "bsc",
+      "explorer": "https://bscscan.com",
+      "explorer_api": "https://api.bscscan.com/api",
+      "average_block_time": 3,
+      "finality_blocks": 15
     },
     "avalanche": {
       "chain_id": 43114,
       "symbol": "AVAX",
       "decimals": 18,
-      "nownodes_id": "avax"
+      "nownodes_id": "avax",
+      "explorer": "https://snowtrace.io",
+      "explorer_api": "https://api.snowtrace.io/api",
+      "average_block_time": 2,
+      "finality_blocks": 1
     },
     "fantom": {
       "chain_id": 250,
@@ -218,7 +251,10 @@
     "solana": {
       "symbol": "SOL",
       "decimals": 9,
-      "nownodes_id": "sol"
+      "nownodes_id": "sol",
+      "explorer": "https://solscan.io",
+      "average_block_time": 0.4,
+      "finality_blocks": 32
     },
     "solana-devnet": {
       "symbol": "SOL",
@@ -231,7 +267,10 @@
     "bitcoin": {
       "symbol": "BTC",
       "decimals": 8,
-      "nownodes_id": "btc"
+      "nownodes_id": "btc",
+      "explorer": "https://blockstream.info",
+      "average_block_time": 600,
+      "finality_blocks": 6
     },
     "bitcoin-testnet": {
       "symbol": "BTC",
@@ -240,19 +279,25 @@
     "dogecoin": {
       "symbol": "DOGE",
       "decimals": 8,
-      "nownodes_id": "doge"
+      "nownodes_id": "doge",
+      "explorer": "https://blockchair.com/dogecoin",
+      "average_block_time": 60,
+      "finality_blocks": 6
     },
     "litecoin": {
       "symbol": "LTC",
       "decimals": 8,
-      "nownodes_id": "ltc"
+      "nownodes_id": "ltc",
+      "explorer": "https://blockchair.com/litecoin",
+      "average_block_time": 150,
+      "finality_blocks": 6
     }
   },
   "rpc_endpoints": {
     "ethereum": [
       {
         "url": "https://eth.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -263,7 +308,7 @@
       },
       {
         "url": "https://eth-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "alchemy",
         "requires_key": "alchemy",
         "features": [
@@ -273,41 +318,41 @@
       },
       {
         "url": "https://mainnet.infura.io/v3/{INFURA_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "infura",
         "requires_key": "infura"
       },
       {
         "url": "https://rpc.ankr.com/eth/{ANKR_API_KEY}",
-        "tier": 2,
+        "tier": "freemium",
         "provider": "ankr",
         "requires_key": "ankr"
       },
       {
         "url": "https://ethereum.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://eth.llamarpc.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "llamarpc"
       },
       {
         "url": "https://rpc.ankr.com/eth",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       },
       {
         "url": "https://eth.drpc.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "drpc"
       }
     ],
     "polygon": [
       {
         "url": "https://matic.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -318,36 +363,36 @@
       },
       {
         "url": "https://polygon-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "alchemy",
         "requires_key": "alchemy"
       },
       {
         "url": "https://polygon-mainnet.infura.io/v3/{INFURA_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "infura",
         "requires_key": "infura"
       },
       {
         "url": "https://polygon.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://polygon-rpc.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "polygon"
       },
       {
         "url": "https://rpc.ankr.com/polygon",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "arbitrum": [
       {
         "url": "https://arbitrum.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -358,30 +403,30 @@
       },
       {
         "url": "https://arb-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "alchemy",
         "requires_key": "alchemy"
       },
       {
         "url": "https://arbitrum.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://arb1.arbitrum.io/rpc",
-        "tier": 3,
+        "tier": "free",
         "provider": "arbitrum"
       },
       {
         "url": "https://rpc.ankr.com/arbitrum",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "optimism": [
       {
         "url": "https://optimism.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -392,30 +437,30 @@
       },
       {
         "url": "https://opt-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "alchemy",
         "requires_key": "alchemy"
       },
       {
         "url": "https://optimism.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://mainnet.optimism.io",
-        "tier": 3,
+        "tier": "free",
         "provider": "optimism"
       },
       {
         "url": "https://rpc.ankr.com/optimism",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "base": [
       {
         "url": "https://base.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -426,30 +471,30 @@
       },
       {
         "url": "https://base-mainnet.g.alchemy.com/v2/{ALCHEMY_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "alchemy",
         "requires_key": "alchemy"
       },
       {
         "url": "https://base.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://mainnet.base.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "base"
       },
       {
         "url": "https://rpc.ankr.com/base",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "bsc": [
       {
         "url": "https://bsc.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -460,24 +505,24 @@
       },
       {
         "url": "https://bsc.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://bsc-dataseed.binance.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "binance"
       },
       {
         "url": "https://rpc.ankr.com/bsc",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "avalanche": [
       {
         "url": "https://avax.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -488,24 +533,24 @@
       },
       {
         "url": "https://avalanche.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://api.avax.network/ext/bc/C/rpc",
-        "tier": 3,
+        "tier": "free",
         "provider": "avalanche"
       },
       {
         "url": "https://rpc.ankr.com/avalanche",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "fantom": [
       {
         "url": "https://ftm.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -516,24 +561,24 @@
       },
       {
         "url": "https://fantom.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://rpc.ftm.tools",
-        "tier": 3,
+        "tier": "free",
         "provider": "fantom"
       },
       {
         "url": "https://rpc.ankr.com/fantom",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "gnosis": [
       {
         "url": "https://gnosis.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -544,24 +589,24 @@
       },
       {
         "url": "https://gnosis.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://rpc.gnosischain.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "gnosis"
       },
       {
         "url": "https://rpc.ankr.com/gnosis",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "moonbeam": [
       {
         "url": "https://moonbeam.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -572,19 +617,19 @@
       },
       {
         "url": "https://moonbeam.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://rpc.api.moonbeam.network",
-        "tier": 3,
+        "tier": "free",
         "provider": "moonbeam"
       }
     ],
     "zksync": [
       {
         "url": "https://zksync.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -593,43 +638,43 @@
       },
       {
         "url": "https://mainnet.era.zksync.io",
-        "tier": 3,
+        "tier": "free",
         "provider": "zksync"
       },
       {
         "url": "https://zksync.drpc.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "drpc"
       }
     ],
     "linea": [
       {
         "url": "https://rpc.linea.build",
-        "tier": 3,
+        "tier": "free",
         "provider": "linea"
       },
       {
         "url": "https://linea.drpc.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "drpc"
       }
     ],
     "scroll": [
       {
         "url": "https://rpc.scroll.io",
-        "tier": 3,
+        "tier": "free",
         "provider": "scroll"
       },
       {
         "url": "https://scroll.drpc.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "drpc"
       }
     ],
     "mantle": [
       {
         "url": "https://mantle.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -638,19 +683,19 @@
       },
       {
         "url": "https://rpc.mantle.xyz",
-        "tier": 3,
+        "tier": "free",
         "provider": "mantle"
       },
       {
         "url": "https://mantle.drpc.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "drpc"
       }
     ],
     "celo": [
       {
         "url": "https://celo.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -661,19 +706,19 @@
       },
       {
         "url": "https://forno.celo.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "celo"
       },
       {
         "url": "https://rpc.ankr.com/celo",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "sepolia": [
       {
         "url": "https://sepolia.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -682,24 +727,24 @@
       },
       {
         "url": "https://ethereum-sepolia.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://rpc.sepolia.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "sepolia"
       },
       {
         "url": "https://rpc.ankr.com/eth_sepolia",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "holesky": [
       {
         "url": "https://holesky.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -708,62 +753,62 @@
       },
       {
         "url": "https://ethereum-holesky.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://rpc.ankr.com/eth_holesky",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "polygon-amoy": [
       {
         "url": "https://rpc-amoy.polygon.technology",
-        "tier": 3,
+        "tier": "free",
         "provider": "polygon"
       }
     ],
     "arbitrum-sepolia": [
       {
         "url": "https://arbitrum-sepolia.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://sepolia-rollup.arbitrum.io/rpc",
-        "tier": 3,
+        "tier": "free",
         "provider": "arbitrum"
       }
     ],
     "optimism-sepolia": [
       {
         "url": "https://optimism-sepolia.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://sepolia.optimism.io",
-        "tier": 3,
+        "tier": "free",
         "provider": "optimism"
       }
     ],
     "base-sepolia": [
       {
         "url": "https://base-sepolia.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://sepolia.base.org",
-        "tier": 3,
+        "tier": "free",
         "provider": "base"
       }
     ],
     "bsc-testnet": [
       {
         "url": "https://bsc-testnet.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -772,14 +817,14 @@
       },
       {
         "url": "https://bsc-testnet.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       }
     ],
     "avalanche-fuji": [
       {
         "url": "https://avax-testnet.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -788,35 +833,35 @@
       },
       {
         "url": "https://avalanche-fuji-c-chain.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       }
     ],
     "fantom-testnet": [
       {
         "url": "https://rpc.testnet.fantom.network",
-        "tier": 3,
+        "tier": "free",
         "provider": "fantom"
       }
     ],
     "gnosis-chiado": [
       {
         "url": "https://rpc.chiadochain.net",
-        "tier": 3,
+        "tier": "free",
         "provider": "gnosis"
       }
     ],
     "moonbase-alpha": [
       {
         "url": "https://rpc.api.moonbase.moonbeam.network",
-        "tier": 3,
+        "tier": "free",
         "provider": "moonbeam"
       }
     ],
     "solana": [
       {
         "url": "https://sol.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -825,33 +870,33 @@
       },
       {
         "url": "https://api.mainnet-beta.solana.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "solana"
       },
       {
         "url": "https://solana.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       }
     ],
     "solana-devnet": [
       {
         "url": "https://api.devnet.solana.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "solana"
       }
     ],
     "solana-testnet": [
       {
         "url": "https://api.testnet.solana.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "solana"
       }
     ],
     "bitcoin": [
       {
         "url": "https://btc.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -860,26 +905,26 @@
       },
       {
         "url": "https://bitcoin.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       },
       {
         "url": "https://rpc.ankr.com/btc",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       }
     ],
     "bitcoin-testnet": [
       {
         "url": "https://bitcoin-testnet.publicnode.com",
-        "tier": 3,
+        "tier": "free",
         "provider": "publicnode"
       }
     ],
     "dogecoin": [
       {
         "url": "https://doge.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -888,19 +933,19 @@
       },
       {
         "url": "https://rpc.ankr.com/doge",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       },
       {
         "url": "https://go.getblock.io/3c7c28e711814d728754a606a1947ce3",
-        "tier": 3,
+        "tier": "free",
         "provider": "getblock"
       }
     ],
     "litecoin": [
       {
         "url": "https://ltc.nownodes.io/{NOWNODES_API_KEY}",
-        "tier": 1,
+        "tier": "premium",
         "provider": "nownodes",
         "requires_key": "nownodes",
         "features": [
@@ -909,12 +954,12 @@
       },
       {
         "url": "https://rpc.ankr.com/litecoin",
-        "tier": 3,
+        "tier": "free",
         "provider": "ankr-free"
       },
       {
         "url": "https://go.getblock.io/6d0733a55238499fa73639783f19ee42",
-        "tier": 3,
+        "tier": "free",
         "provider": "getblock"
       }
     ]
@@ -963,7 +1008,7 @@
         "name": "nownodes",
         "url": "https://btcbook.nownodes.io/api/v2/address/{address}",
         "type": "nownodes",
-        "tier": 1,
+        "tier": "premium",
         "requires_key": "nownodes",
         "header_key": "api-key"
       },
@@ -971,19 +1016,19 @@
         "name": "blockstream",
         "url": "https://blockstream.info/api/address/{address}",
         "type": "blockstream",
-        "tier": 3
+        "tier": "free"
       },
       {
         "name": "mempool",
         "url": "https://mempool.space/api/address/{address}",
         "type": "blockstream",
-        "tier": 3
+        "tier": "free"
       },
       {
         "name": "blockcypher",
         "url": "https://api.blockcypher.com/v1/btc/main/addrs/{address}/balance",
         "type": "blockcypher",
-        "tier": 3
+        "tier": "free"
       }
     ],
     "bitcoin-testnet": [
@@ -991,13 +1036,13 @@
         "name": "blockstream",
         "url": "https://blockstream.info/testnet/api/address/{address}",
         "type": "blockstream",
-        "tier": 3
+        "tier": "free"
       },
       {
         "name": "mempool",
         "url": "https://mempool.space/testnet/api/address/{address}",
         "type": "blockstream",
-        "tier": 3
+        "tier": "free"
       }
     ],
     "dogecoin": [
@@ -1005,7 +1050,7 @@
         "name": "nownodes",
         "url": "https://dogebook.nownodes.io/api/v2/address/{address}",
         "type": "nownodes",
-        "tier": 1,
+        "tier": "premium",
         "requires_key": "nownodes",
         "header_key": "api-key"
       },
@@ -1013,7 +1058,7 @@
         "name": "blockcypher",
         "url": "https://api.blockcypher.com/v1/doge/main/addrs/{address}/balance",
         "type": "blockcypher",
-        "tier": 3
+        "tier": "free"
       }
     ],
     "litecoin": [
@@ -1021,7 +1066,7 @@
         "name": "nownodes",
         "url": "https://ltcbook.nownodes.io/api/v2/address/{address}",
         "type": "nownodes",
-        "tier": 1,
+        "tier": "premium",
         "requires_key": "nownodes",
         "header_key": "api-key"
       },
@@ -1029,13 +1074,13 @@
         "name": "blockcypher",
         "url": "https://api.blockcypher.com/v1/ltc/main/addrs/{address}/balance",
         "type": "blockcypher",
-        "tier": 3
+        "tier": "free"
       },
       {
         "name": "litecoinspace",
         "url": "https://litecoinspace.org/api/address/{address}",
         "type": "blockstream",
-        "tier": 3
+        "tier": "free"
       }
     ]
   },
@@ -1045,7 +1090,7 @@
       {
         "name": "coingecko",
         "display_name": "CoinGecko",
-        "tier": 1,
+        "tier": "premium",
         "base_url": "https://api.coingecko.com/api/v3",
         "endpoints": {
           "simple_price": "/simple/price",
@@ -1078,12 +1123,13 @@
           "optimism": "optimistic-ethereum",
           "base": "base",
           "avalanche": "avalanche"
-        }
+        },
+        "pro_base_url": "https://pro-api.coingecko.com/api/v3"
       },
       {
         "name": "coincap",
         "display_name": "CoinCap",
-        "tier": 2,
+        "tier": "freemium",
         "base_url": "https://api.coincap.io/v2",
         "endpoints": {
           "assets": "/assets/{symbol}"
@@ -1106,7 +1152,7 @@
       {
         "name": "cryptocompare",
         "display_name": "CryptoCompare",
-        "tier": 2,
+        "tier": "freemium",
         "base_url": "https://min-api.cryptocompare.com/data",
         "endpoints": {
           "price": "/price"
@@ -1622,6 +1668,30 @@
       "chain_types": [
         "bitcoin"
       ]
+    }
+  },
+  "_schema": {
+    "version": "3.0.0",
+    "min_client_version": "4.1.0",
+    "changelog": [
+      "Updated to descriptive tier names (premium/freemium/free)",
+      "Added connection settings and timeouts",
+      "Enhanced chain metadata with explorers and block times",
+      "Added CoinGecko Pro API URL support",
+      "Improved rate limit configuration"
+    ]
+  },
+  "connection_settings": {
+    "default_timeout_ms": 30000,
+    "retry_attempts": 3,
+    "retry_delay_ms": 1000,
+    "per_provider_timeouts": {
+      "nownodes": 15000,
+      "alchemy": 10000,
+      "infura": 12000,
+      "quicknode": 10000,
+      "publicnode": 30000,
+      "llamarpc": 30000
     }
   }
 }
