@@ -341,7 +341,7 @@
       {
         "url": "https://rpc.ankr.com/eth",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       },
       {
         "url": "https://eth.drpc.org",
@@ -386,7 +386,7 @@
       {
         "url": "https://rpc.ankr.com/polygon",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "arbitrum": [
@@ -420,7 +420,7 @@
       {
         "url": "https://rpc.ankr.com/arbitrum",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "optimism": [
@@ -454,7 +454,7 @@
       {
         "url": "https://rpc.ankr.com/optimism",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "base": [
@@ -488,7 +488,7 @@
       {
         "url": "https://rpc.ankr.com/base",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "bsc": [
@@ -516,7 +516,7 @@
       {
         "url": "https://rpc.ankr.com/bsc",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "avalanche": [
@@ -544,7 +544,7 @@
       {
         "url": "https://rpc.ankr.com/avalanche",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "fantom": [
@@ -572,7 +572,7 @@
       {
         "url": "https://rpc.ankr.com/fantom",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "gnosis": [
@@ -600,7 +600,7 @@
       {
         "url": "https://rpc.ankr.com/gnosis",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "moonbeam": [
@@ -712,7 +712,7 @@
       {
         "url": "https://rpc.ankr.com/celo",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "sepolia": [
@@ -738,7 +738,7 @@
       {
         "url": "https://rpc.ankr.com/eth_sepolia",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "holesky": [
@@ -759,7 +759,7 @@
       {
         "url": "https://rpc.ankr.com/eth_holesky",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "polygon-amoy": [
@@ -911,7 +911,7 @@
       {
         "url": "https://rpc.ankr.com/btc",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       }
     ],
     "bitcoin-testnet": [
@@ -934,7 +934,7 @@
       {
         "url": "https://rpc.ankr.com/doge",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       },
       {
         "url": "https://go.getblock.io/3c7c28e711814d728754a606a1947ce3",
@@ -955,7 +955,7 @@
       {
         "url": "https://rpc.ankr.com/litecoin",
         "tier": "free",
-        "provider": "ankr-free"
+        "provider": "ankr"
       },
       {
         "url": "https://go.getblock.io/6d0733a55238499fa73639783f19ee42",
@@ -1129,7 +1129,7 @@
       {
         "name": "coincap",
         "display_name": "CoinCap",
-        "tier": "freemium",
+        "tier": "free",
         "base_url": "https://api.coincap.io/v2",
         "endpoints": {
           "assets": "/assets/{symbol}"
@@ -1152,7 +1152,7 @@
       {
         "name": "cryptocompare",
         "display_name": "CryptoCompare",
-        "tier": "freemium",
+        "tier": "free",
         "base_url": "https://min-api.cryptocompare.com/data",
         "endpoints": {
           "price": "/price"
@@ -1183,7 +1183,63 @@
       "cryptocompare"
     ],
     "default_provider": "coingecko",
-    "default_currency": "usd"
+    "default_currency": "usd",
+    "symbol_normalization": {
+      "_comment": "Maps common symbol variations to CoinGecko IDs for consistent price lookups",
+      "eth": "ethereum",
+      "btc": "bitcoin",
+      "bnb": "binancecoin",
+      "matic": "matic-network",
+      "avax": "avalanche-2",
+      "ftm": "fantom",
+      "sol": "solana",
+      "ada": "cardano",
+      "dot": "polkadot",
+      "atom": "cosmos",
+      "link": "chainlink",
+      "uni": "uniswap",
+      "usdc": "usd-coin",
+      "usdt": "tether",
+      "dai": "dai",
+      "wbtc": "wrapped-bitcoin",
+      "doge": "dogecoin",
+      "ltc": "litecoin",
+      "xrp": "ripple",
+      "xlm": "stellar",
+      "algo": "algorand",
+      "near": "near",
+      "ape": "apecoin",
+      "arb": "arbitrum",
+      "op": "optimism"
+    },
+    "symbol_to_ticker": {
+      "_comment": "Maps CoinGecko IDs to their ticker symbols for display",
+      "ethereum": "ETH",
+      "bitcoin": "BTC",
+      "binancecoin": "BNB",
+      "matic-network": "MATIC",
+      "avalanche-2": "AVAX",
+      "fantom": "FTM",
+      "solana": "SOL",
+      "cardano": "ADA",
+      "polkadot": "DOT",
+      "cosmos": "ATOM",
+      "chainlink": "LINK",
+      "uniswap": "UNI",
+      "usd-coin": "USDC",
+      "tether": "USDT",
+      "dai": "DAI",
+      "wrapped-bitcoin": "WBTC",
+      "dogecoin": "DOGE",
+      "litecoin": "LTC",
+      "ripple": "XRP",
+      "stellar": "XLM",
+      "algorand": "ALGO",
+      "near": "NEAR",
+      "apecoin": "APE",
+      "arbitrum": "ARB",
+      "optimism": "OP"
+    }
   },
   "debank_api": {
     "_comment": "DeBank API configuration for multi-chain portfolio queries (paid Pro API required for reliable access)",
